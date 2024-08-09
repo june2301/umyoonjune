@@ -22,7 +22,7 @@ public class swea2805 {
 			}
 			
 			int sum = 0;
-			
+			// 마름모 가운데 지정
 			int start = N / 2;
 			int end = N / 2;
 			
@@ -30,11 +30,11 @@ public class swea2805 {
 				for (int c = start ; c <= end ; c++) {
 					sum += land[r][c];
 				}
-				
+				// 중간 전까진 범위 넓히도록
 				if (r < N/2) {
 					start--;
 					end++;
-				} else {
+				} else { // 중간 이후는 좁히도록
 					start++;
 					end--;
 				}

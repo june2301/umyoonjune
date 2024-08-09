@@ -1,7 +1,6 @@
 package algo_w2_day4;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class swea1860 {
@@ -17,25 +16,18 @@ public class swea1860 {
 			int M = sc.nextInt(); // 붕어빵 시간
 			int K = sc.nextInt(); // 붕어빵 개수
 			
-			Queue<Integer> q = new LinkedList<>();
+			int[] man = new int[N];
 			for (int i = 0; i < N; i++) {
-				q.add(sc.nextInt());
+				man[i] = sc.nextInt();
 			}
+			Arrays.sort(man);
 			
-			int time = 0;
-			int b = 0;
 			boolean ans = true;
-			int make = 0;
-			for (int i = 1; i <= N; i++) {
-				make += M;
-				time += q.poll();
-				if (time < M) {
-					ans = false;
-					break;
-				}
-				if ((make-time) > 0) {
-					b += K;
-				}else {
+			for (int i = 0; i < N; i++) {
+				int time = man[i];
+				// time / M : 지금까지 붕어빵 만드는 사이클이 몇 번 돌았는가
+				// (time / M) * K : 지금까지 만들어진 붕어빵 개수
+				if ((time / M) * K < i + 1) {
 					ans = false;
 					break;
 				}
