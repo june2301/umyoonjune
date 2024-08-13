@@ -20,9 +20,9 @@ public class 길찾기1219 {
 			for (int i = 0; i < N; i++) {
 				int start = sc.nextInt();
 				int end = sc.nextInt();
-				if (arr1[start] == 0) {
+				if (arr1[start] == 0) { // arr1에 값이 없으면
 					arr1[start] = end;
-				} else {
+				} else { // arr1에 값이 있으면
 					arr2[start] = end;
 				}
 			}

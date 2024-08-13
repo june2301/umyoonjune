@@ -33,7 +33,7 @@ public class Contact1238 {
 			int ans = 0;
 			while (!q.isEmpty()) {
 				int max = 0;
-				for (int i = 0; i < q.size(); i++) {
+				for (int i = 0; i < q.size(); i++) { // q에 들어있는만큼만 꺼내기
 					index = q.poll();
 					for (int j = 0; j < 101; j++) {
 						if (graph[index][j] == 1 && visit[j] == 0) { // 기록되어있고, 방문안했고
