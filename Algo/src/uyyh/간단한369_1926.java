@@ -1,4 +1,4 @@
-package swea;
+package uyyh;
 
 import java.util.Scanner;
 

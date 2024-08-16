@@ -1,4 +1,4 @@
-package swea;
+package uyyh;
 
 import java.io.BufferedReader;
 import java.io.IOException;
