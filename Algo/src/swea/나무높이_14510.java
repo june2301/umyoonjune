@@ -28,15 +28,24 @@ public class 나무높이_14510 {
 		int water = 1;
 		int cnt = 0;
 		while (sum != 0) {
-			if (sum == 2) {
-				cnt += 2;
+			if (sum == 7 && water == 2) {
+				cnt += 3;
+				sum = 0;
 				break;
 			}
 			sum -= water;
 			cnt++;
-			water = 2;
+			if (water == 1) {
+				water = 2;
+			}
+			if (water == 2) {
+				water = 1;
+			}
 		}
 		
+		if (sum == 2) {
+			cnt = 2;
+		}
 		System.out.println(cnt);
 		
 		
