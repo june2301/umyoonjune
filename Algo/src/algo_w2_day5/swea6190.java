@@ -34,7 +34,7 @@ public class swea6190 {
 					if (cnum[j] <= cnum[j+1]) { // 단조인지 check++ 를 통해 확인
 						check++;
 					}
-					if (check >= cnum.length-1) { // 마지막 숫자는 제외
+					if (check >= cnum.length-1) { // 마지막 숫자는 제외한 길이보다 check 많으면
 						nums.add(Integer.parseInt(String.valueOf(cnum)));
 					}
 				}

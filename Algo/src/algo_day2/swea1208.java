@@ -19,6 +19,7 @@ public class swea1208 {
 				box[i] = Integer.parseInt(st.nextToken());
 			}
 
+			// 정렬 1번 실행
 			for (int i = 0; i < box.length; i++) {
 				int min = i;
 				for (int j = i + 1; j < box.length; j++) {
@@ -32,11 +33,15 @@ public class swea1208 {
 			}
 			int cnt = 0;
 			while (cnt < dump) {
+				// 제일 큰거가 제일 작은거보다 크면
+				// 제일큰거 - 1
+				// 제일작은거 + 1
 				if (box[box.length - 1] - box[0] > 0) {
 					box[0]++;
 					box[box.length - 1]--;
 					cnt++;
 
+					// 정렬
 					for (int i = 0; i < box.length; i++) {
 						int min = i;
 						for (int j = i + 1; j < box.length; j++) {
