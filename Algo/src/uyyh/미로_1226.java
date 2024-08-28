@@ -3,7 +3,7 @@ package uyyh;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class swea1226 {
+public class 미로_1226 {
 
 	public static void main(String[] args) {
 		
