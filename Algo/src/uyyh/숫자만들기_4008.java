@@ -38,10 +38,10 @@ public class 숫자만들기_4008 {
 			check = new boolean[M];
 			permCal = new char[M];
 			min = Integer.MAX_VALUE;
-			max = 0;
+			max = Integer.MIN_VALUE;
 			perm(0);
-			System.out.println("#" + tc + " " + (max - min));
 			
+			System.out.println("#" + tc + " " + (max - min));
 		}
 		
 	}
@@ -54,7 +54,13 @@ public class 숫자만들기_4008 {
 				if (permCal[i] == '+') save += nums[i+1];
 				if (permCal[i] == '-') save -= nums[i+1];
 				if (permCal[i] == '*') save *= nums[i+1];
-				if (permCal[i] == '/') save /= nums[i+1];
+				if (permCal[i] == '/') {
+					if (save < 0) {
+						save = -(-save / nums[i+1]);  // 음수일 때는 반대로 처리
+					} else {
+						save /= nums[i+1];
+					}
+				}
 			}
 			if (save < min) {
 				min = save;
@@ -65,9 +71,12 @@ public class 숫자만들기_4008 {
 			return;
 		}
 		
+		char last = ' ';
 		for (int i = 0; i < M; i++) {
 			if (check[i]) continue; 
+			if (cal.get(i) == last) continue;
 			permCal[idx] = cal.get(i);
+			last = cal.get(i);
 			check[i] = true;
 			perm(idx+1);
 			check[i] = false;
