@@ -10,22 +10,26 @@ public class BOJ배수스위치_12927 {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		char[] input = br.readLine().toCharArray();
-		char[] check = new char[input.length];
-		
+		String input = br.readLine();
+		char[] swi = new char[input.length()+1];
+		for (int i = 1; i < swi.length; i++) {
+			swi[i] = input.charAt(i-1);
+		}
 		int cnt = 0;
-		for (int i = 0; i < input.length; i++) {
-			if (input[i] == 'Y') {
+		for (int i = 1; i < swi.length; i++) {
+			if (swi[i] == 'Y') {
 				cnt++;
-				for (int j = i; j < input.length; j++) {
-					
+				for (int j = i; j < swi.length; j += i) {
+					swi[j] = swi[j] == 'N' ? 'Y' : 'N';
 				}
 			}
 		}
-		
-		
-		
-		
+		for (int i = 0; i < swi.length; i++) {
+			if (swi[i] == 'Y') {
+				cnt = -1;
+			}
+		}
+		System.out.println(cnt);
 	}
 
 }
