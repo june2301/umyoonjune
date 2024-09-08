@@ -1,12 +1,13 @@
-package uyyh;
+package algo_2nd_0905;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
-public class 보급로_1249 {
+public class 보급로_pq_1249 {
 
 	// 우선순위 큐에서 가장 작은값 정렬시키기 위해 Comparable 구현
 	static class Node implements Comparable<Node> {
@@ -30,6 +31,8 @@ public class 보급로_1249 {
 	static int N;
 	static int[] dr = {0, 1, 0, -1};
 	static int[] dc = {1, 0, -1, 0};
+	static boolean[][] visited;
+	static int[][] minCost;
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -51,29 +54,31 @@ public class 보급로_1249 {
 	}
 	
 	static int dijkstra(int[][] map) {
-		// 각 칸의 최소값을 계산하기 위한 2차원 배열 생성
-		// 및 Integer의 가장 큰 값을 초기화
-		int[][] minCost = new int[N][N];
-		for (int i = 0; i < minCost.length; i++) {
+		visited = new boolean[N][N];
+		minCost = new int[N][N];
+		for (int i = 0; i < N; i++) {
 			Arrays.fill(minCost[i], Integer.MAX_VALUE);
 		}
 		
-		// pq 생성 및 출발지점 add
-		PriorityQueue<Node> pq = new PriorityQueue<>();
-		pq.add(new Node(0, 0, map[0][0]));
+		Queue<Node> pq = new PriorityQueue<>();
+		// 시작지점 정보들 초기화
+		pq.add(new Node(0, 0, 0));
+		visited[0][0] = true;
+		minCost[0][0] = 0;
 		
+		// 모든 지점까지 갈 수 있는 최소 cost 계산
 		while (!pq.isEmpty()) {
-			Node save = pq.poll();
+			Node n = pq.poll();
 			
-			// 출발지점으로부터 각 칸의 최소값 계산 및 저장
+			// 사방탐색하며 더 작은값 pq에 넣기
 			for (int i = 0; i < 4; i++) {
-				int nr = save.r + dr[i];
-				int nc = save.c + dc[i];
+				int nr = n.r + dr[i];
+				int nc = n.c + dc[i];
 				
 				if (nr >= 0 && nc >= 0 && nr < N && nc < N) {
-					
-					if (minCost[nr][nc] > save.cost + map[nr][nc]) {
-						minCost[nr][nc] = save.cost + map[nr][nc];
+					if (!visited[nr][nc] && 
+							minCost[nr][nc] > n.cost + map[nr][nc]) {
+						minCost[nr][nc] = n.cost + map[nr][nc];
 						pq.add(new Node(nr, nc, minCost[nr][nc]));
 					}
 					

@@ -1,4 +1,4 @@
-package uyyh;
+package algo_2nd_0904;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +28,14 @@ public class 서로소집합_3289 {
 				List<Integer> input = new ArrayList<Integer>();
 				int check = sc.nextInt();
 				
-				if (check == 0) { // 0일 경우 합치기
+				if (check == 0) {
 					int a = sc.nextInt();
 					int b = sc.nextInt();
 					if (find(a) != find(b)) {
 						union(find(a), find(b));
 					}
 				}
-				if (check == 1) { // 1일 경우 root 같은지 확인
+				if (check == 1) {
 					int a = sc.nextInt();
 					int b = sc.nextInt();
 					if (find(a) == find(b)) {

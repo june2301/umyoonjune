@@ -1,4 +1,4 @@
-package uyyh;
+package algo_2nd_0904;
 
 import java.util.HashSet;
 import java.util.Scanner;
