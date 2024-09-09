@@ -25,7 +25,6 @@ public class 서로소집합_3289 {
 			}
 			System.out.print("#" + tc + " ");
 			for (int i = 0; i < M; i++) {
-				List<Integer> input = new ArrayList<Integer>();
 				int check = sc.nextInt();
 				
 				if (check == 0) {
