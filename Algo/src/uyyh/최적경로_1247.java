@@ -1,79 +1,62 @@
 package uyyh;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class 최적경로_1247 {
-	
-	static class Edge implements Comparable<Edge>{
-		int From;
-		int To;
-		int W;
-		public Edge(int from, int to, int w) {
-			super();
-			From = from;
-			To = to;
-			W = w;
-		}
-		@Override
-		public int compareTo(Edge o) {
-			return this.W - o.W;
-		}
-	}
-	
-	static int N, ans;
+
+	static int N;
+	static int[][] spot;
+	static int[] home;
+	static boolean[] visited;
+	static int ans;
 
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
 		
-		N = sc.nextInt();
-		int[] xs = new int[N+2];
-		int[] ys = new int[N+2];
-		for (int i = 0; i < N+2; i++) {
-			xs[i] = sc.nextInt();
-			ys[i] = sc.nextInt();
+		int T = sc.nextInt();
+		for (int tc = 1; tc <= T; tc++) {
+			
+			N = sc.nextInt();
+			spot = new int[N + 1][2];
+			spot[0][0] = sc.nextInt();
+			spot[0][1] = sc.nextInt();
+			
+			home = new int[2];
+			home[0] = sc.nextInt();
+			home[1] = sc.nextInt();
+
+			for (int i = 1; i <= N; i++) {
+				spot[i][0] = sc.nextInt();
+				spot[i][1] = sc.nextInt();
+			}
+			
+			visited = new boolean[N + 1];
+			
+			ans = Integer.MAX_VALUE;
+			
+			perm(0, 0, 0);
+			
+			System.out.println("#" + tc + " " + ans);
+		}
+
+	}
+
+	public static void perm(int curr, int cnt, int dist) {
+		if (cnt == N) {
+			dist += Math.abs(spot[curr][0] - home[0]) + Math.abs(spot[curr][1] - home[1]);
+			ans = Math.min(ans, dist);
+			return;
 		}
 		
-		List<Edge>[] edges = new ArrayList[N>2 ? N + ((N*(N-3))/2) : N];
-		
-		for (int i = 0; i < (N>2 ? N + ((N*(N-3))/2) : N); i++) {
-			edges[i] = new ArrayList<>();
-		}
-		
-		for (int i = 0; i < N+1; i++) {
-			for (int j = i+1; j < N+2; j++) { // 모든 간선 경우의 수 계산
-				int w = Math.abs(xs[i] - xs[j]) + Math.abs(ys[i] - ys[j]);
-				edges[i].add(new Edge(i, j, w));
-				edges[j].add(new Edge(j, i, w));
+		for (int i = 1; i <= N; i++) {
+			if (!visited[i]) {
+				visited[i] = true;
+				int diff = Math.abs(spot[curr][0] - spot[i][0]) + Math.abs(spot[curr][1] - spot[i][1]);
+				perm(i, cnt + 1, dist + diff);
+				visited[i] = false;
 			}
 		}
-		
-		PriorityQueue<Edge> pq = new PriorityQueue<>();
-		pq.addAll(edges[0]);
-		boolean[] visited = new boolean[N+2];
-		visited[0] = true;
-		
-		ans = 0;
-		int pick = 1;
-		
-		while (pick != N+2) {
-			Edge e = pq.poll();
-			if (visited[e.To]) continue; 
-			
-			ans += e.W;
-			visited[e.To] = true;
-			pick++;
-			
-			pq.addAll(edges[e.To]);
-			
-		}
-		
-		System.out.println(ans);
-//		System.out.println("#" + tc + " " + );
-		// 시작 위치와 끝 위치를 정하는 방법에 대해
 	}
 
 }
