@@ -18,10 +18,12 @@ public class 최적경로_1247 {
 		for (int tc = 1; tc <= T; tc++) {
 			
 			N = sc.nextInt();
+			// 회사 + 고객 좌표
 			spot = new int[N + 1][2];
 			spot[0][0] = sc.nextInt();
 			spot[0][1] = sc.nextInt();
 			
+			// 집 좌표만 따로 저장
 			home = new int[2];
 			home[0] = sc.nextInt();
 			home[1] = sc.nextInt();
@@ -44,11 +46,14 @@ public class 최적경로_1247 {
 
 	public static void perm(int curr, int cnt, int dist) {
 		if (cnt == N) {
+			// 마지막 지점과 집까지 거리 계산
 			dist += Math.abs(spot[curr][0] - home[0]) + Math.abs(spot[curr][1] - home[1]);
+			// 제일 작은거로 초기화
 			ans = Math.min(ans, dist);
 			return;
 		}
 		
+		// 집 제외 모든 경로 탐색
 		for (int i = 1; i <= N; i++) {
 			if (!visited[i]) {
 				visited[i] = true;
