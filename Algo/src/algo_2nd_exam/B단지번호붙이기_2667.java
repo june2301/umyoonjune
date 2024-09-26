@@ -58,7 +58,7 @@ public class B단지번호붙이기_2667 {
 			if (nr < 0 || nc < 0 || nr >= N || nc >= N || visited[nr][nc])
 				continue;
 			if (map[nr][nc] == 1) {
-				cnt++;
+				cnt++; // 각 연결된 구역 카운트
 				dfs(nr, nc);
 			}
 		}
