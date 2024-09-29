@@ -33,7 +33,9 @@ public class 요리사_4012 {
         }
     }
 
+    // 조합
     private static void comb(int idx, int sidx) {
+    	// 조합으로 원하는 애들만큼 모였을 때 처리는 여기
         if(sidx == R) {
             int food1 = 0;
             int food2 = 0;
@@ -54,6 +56,7 @@ public class 요리사_4012 {
             return;
         }
         
+        // 조합 코드는 여기
         for (int i = idx; i <= N-R+sidx; i++) {
             check[i] = true;
             comb(i+1, sidx+1);
