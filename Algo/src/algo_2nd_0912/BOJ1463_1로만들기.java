@@ -10,7 +10,7 @@ public class BOJ1463_1로만들기 {
 		
 		int N = sc.nextInt();
 		
-		int dp[] = new int[N+1];
+		int[] dp = new int[N+1];
 		
 		dp[0] = dp[1] = 0;
 		
