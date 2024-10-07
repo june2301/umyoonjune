@@ -18,32 +18,27 @@ public class 겹치는건싫어_20922 {
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int[] nums = new int[N];
-		int cnt = 1;
+		for (int i = 0; i < N; i++) {
+			nums[i] = Integer.parseInt(st.nextToken());
+		}
+		// 투포인터
+		int left = 0;
+		int right = 0;
+		int[] arr = new int[100001]; // 숫자 중복 카운트
 		int ans = 0;
-		int num = 0;
-		int check = 1;
-		nums[0] = Integer.parseInt(st.nextToken());
-		for (int i = 1; i < N; i++) {
-			num = Integer.parseInt(st.nextToken());
-			nums[i] = num;
-			cnt++;
-			if (nums[i-1] == num) {
-				check++;
-				cnt--;
-			} else if (check > 1) {
-				check = 1;
+		while (right < N) {
+			// right가 현재고 계속 한칸씩 이동
+			int curr = nums[right];
+			arr[curr]++;
+			while (arr[curr] > K) { // K보다 크다면
+				// arr[curr]가 K보다 같거나 작아질때까지 left 이동하면서 카운트 빼주기
+				arr[nums[left]]--;
+				left++;
 			}
-			if (check > K) {
-				if (cnt > ans) {
-					ans = cnt;
-				}
-				cnt = 0;
-				check = 1;
-			}
+			ans = Math.max(ans, right-left+1);
+			right++;
 		}
-		if (cnt > ans) {
-			ans = cnt;
-		}
+		
 		System.out.println(ans);
 		
 	}
