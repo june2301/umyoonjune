@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class 숨바꼭질_1697 {
+public class 숨바꼭질3_13549 {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
+Scanner sc = new Scanner(System.in);
 		
 		int N = sc.nextInt();
 		int K = sc.nextInt();
@@ -32,7 +32,7 @@ public class 숨바꼭질_1697 {
 				q.add(new int[] {curr+1, ans+1});
 			}
 			if (curr*2 <= 100000 && !visited[curr*2]) {
-				q.add(new int[] {curr*2, ans+1});
+				q.add(new int[] {curr*2, ans});
 			}
 			
 		}
