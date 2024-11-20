@@ -10,31 +10,36 @@ public class 고층건물_1027 {
 		
 		int N = sc.nextInt();
 		
-		int[] arr = new int[N];
+		double[] bui = new double[N];
 		
 		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
+			bui[i] = sc.nextDouble();
 		}
-		// l, r 보내면서 기울기 계산 -> 볼 수 있으면 계속 진행
+		
+		int max = 0;
 		for (int i = 0; i < N; i++) {
-			int cur = arr[i];
-			boolean left = false, right = false;
+			int cnt = 0;
 			
-			while (!left || !right) {
-				int l = 0;
-				int r = 0;
-				
-				
-				
-				
+			double left = Double.NEGATIVE_INFINITY;
+			for (int j = i - 1; j >= 0; j--) {
+				double slope = (bui[j]-bui[i]) / (j-i);
+				if (slope > left) {
+					left = slope;
+					cnt++;
+				}
 			}
 			
-			
-			
+			double right = Double.NEGATIVE_INFINITY;
+			for (int j = i + 1; j < N; j++) {
+				double slope = (bui[i]-bui[j]) / (i-j);
+				if (slope > right) {
+					right = slope;
+					cnt++;
+				}
+			}
+			max = Math.max(max, cnt);
 		}
-		
-		
-		
+		System.out.println(max);
 	}
 
 }
