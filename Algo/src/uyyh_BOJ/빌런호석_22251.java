@@ -35,6 +35,7 @@ public class 빌런호석_22251 {
 		for (int i = 1; i <= N; i++) {
 			if (X == i) continue;
 			
+			// [자리수][숫자]
 			int[][] floor = change(i);
 			
 			int cnt = 0;
@@ -56,15 +57,19 @@ public class 빌런호석_22251 {
 		
 	}
 	
+	// LED로 바꾸기
 	static int[][] change(int num) {
+		// [자리수][숫자]
+		// ex) K = 3 / num = 35 -> [0]번째{0}배열 [1]번쨰{3}배열 [2]번째{5}배열
 		int[][] change = new int[K][7];
-		for (int i = K-1; i >= 0; i--) {
+		for (int i = 0; i < K; i++) {
 			change[i] = nums[num % 10];
 			num /= 10;
 		}
 		return change;
 	}
 	
+	// [숫자]끼리 비교해서 몇 개 반전해야 하는지 카운트 
 	static int count(int[] x, int[] y) {
 		int cnt = 0;
 		for (int i = 0; i < 7; i++) {
