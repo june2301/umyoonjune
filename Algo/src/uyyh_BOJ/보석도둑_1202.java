@@ -1,4 +1,4 @@
-package uyyh;
+package uyyh_BOJ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
