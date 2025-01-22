@@ -15,11 +15,13 @@ public class 구간합구하기5_11660 {
         int M = Integer.parseInt(NM[1]);
 		
         int[][] map = new int[N+1][N+1];
+        int[][] dp = new int[N+1][N+1];
         
         for (int r = 1; r <= N; r++) {
         	StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int c = 1; c <= N; c++) {
 				map[r][c] = Integer.parseInt(st.nextToken());
+				dp[r][c] = dp[r][c-1] + map[r][c];
 			}
 		}
         
@@ -32,10 +34,8 @@ public class 구간합구하기5_11660 {
 			}
         	
         	int sum = 0;
-        	for (int r = range[0]; r <= range[2]; r++) {
-				for (int c = range[1]; c <= range[3]; c++) {
-					sum += map[r][c];
-				}
+        	for (int i = 0; i <= range[2]-range[0]; i++) {
+        		sum += dp[range[0] + i][range[3]] - dp[range[0] + i][range[1] - 1];
 			}
         	
         	sb.append(sum + "\n");
