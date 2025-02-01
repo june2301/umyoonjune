@@ -3,29 +3,107 @@ package uyyh_BOJ;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class 웜홀_1865 {
+	
+	static class Node {
+		int to;
+		int w;
+		
+		public Node(int to, int w) {
+			this.to = to;
+			this.w = w;
+		}
+		
+	}
+	
+	static int N, M, W;
+	static List<Node>[] graph;
+	static int[] dist;
 
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		int T = Integer.parseInt(br.readLine());
-		for (int tc = 1; tc <= T; tc++) {
+		int TC = Integer.parseInt(br.readLine());
+		for (int tc = 1; tc <= TC; tc++) {
 			
-			// 도로와 웜홀 각각 받아두고
-			// 웜홀 먼저 연결되는지 확인 / 안되면 NO
-			// 웜홀 가능한 경우 시간 저장
-			// 도로로 진행하여 시간보다 적으면 YES
+			String[] input = br.readLine().split(" ");
+			N = Integer.parseInt(input[0]);
+			M = Integer.parseInt(input[1]);
+			W = Integer.parseInt(input[2]);
 			
+			graph = new ArrayList[N+1];
+			for (int i = 1; i <= N; i++) {
+				graph[i] = new ArrayList<>();
+			}
 			
+			for (int i = 0; i < M; i++) {
+				String[] road = br.readLine().split(" ");
+				int S = Integer.parseInt(road[0]);
+				int E = Integer.parseInt(road[1]);
+				int T = Integer.parseInt(road[2]);
+				graph[S].add(new Node(E, T));
+				graph[E].add(new Node(S, T));
+			}
 			
+			for (int i = 0; i < W; i++) {
+				String[] road = br.readLine().split(" ");
+				int S = Integer.parseInt(road[0]);
+				int E = Integer.parseInt(road[1]);
+				int T = Integer.parseInt(road[2]);
+				graph[S].add(new Node(E, -T));
+			}
 			
-			
-			
+			boolean minus = false;
+			for (int i = 1; i <= N; i++) {
+				if (bellmanford(i)) {
+					minus = true;
+					sb.append("YES\n");
+					break;
+				} 
+			}
+			if (!minus) {
+				sb.append("NO\n");
+			}
 			
 		}
+		System.out.println(sb);
 		
+	}
+	
+	static boolean bellmanford(int start) {
+		dist = new int[N+1];
+		Arrays.fill(dist, Integer.MAX_VALUE);
+		dist[start] = 0;
+		
+		for (int i = 1; i < N; i++) {
+			boolean check = false;
+			for (int j = 1; j <= N; j++) {
+				for (Node node : graph[j]) {
+					if (dist[j] == Integer.MAX_VALUE) continue;
+					if (dist[node.to] > dist[j] + node.w) {
+						dist[node.to] = dist[j] + node.w;
+						check = true;
+					}
+				}
+			}
+			if (!check) break;
+		}
+		
+		for (int i = 1; i <= N; i++) {
+			for (Node node : graph[i]) {
+				if (dist[i] == Integer.MAX_VALUE) continue;
+				if (dist[node.to] > dist[i] + node.w) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
