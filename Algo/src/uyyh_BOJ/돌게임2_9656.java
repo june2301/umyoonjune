@@ -13,9 +13,15 @@ public class 돌게임2_9656 {
 		
 		int[] dp = new int[N+1];
 		
+		for (int i = 1; i <= N; i++) {
+			dp[i] = dp[i-1] == 1 ? 0 : 1;
+		}
 		
-		
-		
+		if (dp[N] == 0) {
+			System.out.println("SK");
+		} else {
+			System.out.println("CY");
+		}
 		
 	}
 
