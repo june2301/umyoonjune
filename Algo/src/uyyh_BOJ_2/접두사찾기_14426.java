@@ -34,8 +34,8 @@ public class 접두사찾기_14426 {
 
 		int count = 0;
 		for (int i = 0; i < M; i++) {
-			String query = br.readLine();
-			if (search(query)) {
+			String input = br.readLine();
+			if (search(input)) {
 				count++;
 			}
 		}
@@ -52,9 +52,9 @@ public class 접두사찾기_14426 {
 		curr.isEnd = true;
 	}
 
-	static boolean search(String prefix) {
+	static boolean search(String str) {
 		Trie curr = root;
-		for (char c : prefix.toCharArray()) {
+		for (char c : str.toCharArray()) {
 			if (!curr.children.containsKey(c)) {
 				return false;
 			}
