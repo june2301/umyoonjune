@@ -81,3 +81,18 @@ public class 최소비용구하기_1916 {
 		}
 	}
 }
+
+/**
+ * 다익스트라 알고리즘
+ * 
+ * 인접리스트 형태로 그래프 구현
+ * List배열을 사용하여 각 배열 번호가 출발점, 리스트 안의 Node에 도착점과 cost를 저장
+ * 
+ * dijkstra 진행 방식 - dist에 해당 위치까지의 최소 cost 저장
+ * 1. pq에 시작할 위치(1)와 cost 0 저장
+ * 2. 시작 위치에서 이동 가능한 Node 정보 탐색
+ * 3. (이동 가능한 Node의 dist) 가 (현재 Node의 dist + 이동하려는 cost) 보다 크면 dist 갱신
+ * 4. 다음 위치에서 경로 탐색을 위해 pq.add(new Node(next.to, dist[next.to])) 추가
+ * 
+ */
+
