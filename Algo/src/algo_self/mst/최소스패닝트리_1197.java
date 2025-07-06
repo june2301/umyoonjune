@@ -1,4 +1,4 @@
-package algo_self.tree;
+package algo_self.mst;
 
 import java.io.BufferedReader;
 import java.io.IOException;
