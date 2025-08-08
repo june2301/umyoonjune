@@ -6,6 +6,11 @@
 bin/
 *.class
 
+# Eclipse
+.project
+Algo/.project
+Algo/.classpath
+
 # Log file
 *.log
 
