@@ -10,6 +10,7 @@ bin/
 .project
 Algo/.project
 Algo/.classpath
+Algo/.settings/
 
 # Log file
 *.log
