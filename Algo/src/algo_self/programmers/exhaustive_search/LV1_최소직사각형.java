@@ -1,6 +1,6 @@
 package algo_self.programmers.exhaustive_search;
 
-class Solution {
+class LV1_최소직사각형 {
     public int solution(int[][] sizes) {
         int answer = 0;
         

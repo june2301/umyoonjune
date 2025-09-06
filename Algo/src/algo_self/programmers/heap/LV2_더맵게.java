@@ -2,7 +2,7 @@ package algo_self.programmers.heap;
 
 import java.util.*;
 
-class Solution {
+class LV2_더맵게 {
     public int solution(int[] scoville, int K) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         

@@ -1,6 +1,6 @@
 package algo_self.programmers.dfs_bfs;
 
-class Solution {
+class LV2_타겟넘버 {
     
     int tar;
     int[] arr;
