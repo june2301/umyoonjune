@@ -32,27 +32,21 @@ public class 로봇청소기_4991 {
             if (N == 0 && M == 0) break;
 
             map = new char[N][M];
+            dusts = new ArrayList<>();
             for (int r = 0; r < N; r++) {
                 map[r] = br.readLine().toCharArray();
                 for (int c = 0; c < M; c++) {
                     if (map[r][c] == 'o') { 
                     	sr = r; 
                     	sc = c; 
-                    }
+                    	dusts.add(new int[] {r, c});
+                    } else if (map[r][c] == '*') {
+						dusts.add(new int[] {r, c});
+					}
                 }
             }
 
-            dusts = new ArrayList<>();
-            dusts.add(new int[] {sr, sc});
-            for (int r = 0; r < N; r++) {
-                for (int c = 0; c < M; c++) {
-                    if (map[r][c] == '*') {
-                    	dusts.add(new int[] {r, c});
-                    }
-                }
-            }
             K = dusts.size() - 1;
-            if (K == 0) { sb.append(0).append('\n'); continue; }
 
             pair = new int[K + 1][K + 1];
             boolean impossible = false;
@@ -103,7 +97,7 @@ public class 로봇청소기_4991 {
         int[][] dist = new int[N][M];
         for (int[] row : dist) Arrays.fill(row, -1);
         Queue<int[]> q = new LinkedList<>();
-        q.add(new int[]{sr, sc});
+        q.add(new int[] {sr, sc});
         dist[sr][sc] = 0;
 
         while (!q.isEmpty()) {
@@ -121,3 +115,19 @@ public class 로봇청소기_4991 {
         return dist;
     }
 }
+
+/**
+ * 시뮬레이션 + 그래프(최단경로 + 순열탐색)
+ * [문제]
+ * N*M 크기의 방에 시작점 o와 먼지 *가 주어진다. 
+ * 로봇이 상하좌우로 이동해 모든 먼지를 청소할 때 최소 이동 거리 구하기 / 만약 청소 불가하면 -1을 출력
+ * 
+ * 시작점과 모든 먼지를 정점으로 보고, 각 정점에서 BFS로 다른 정점까지의 최단거리 모두 구하기
+ * 그 후 모든 먼지를 방문하는 최소 경로를 탐색
+ * 
+ * 입력을 받아 시작점과 먼지 좌표를 리스트에 (r, c)로 저장
+ * 각 포인트마다 BFS를 수행해 다른 포인트까지의 최단거리 구해두기
+ * 도달 불가능한 경우가 있으면 -1 기록 및 -1 출력
+ * 저장해둔 pair 거리들 바탕으로 DFS를 통해 최단 이동거리 구하기
+ */
+
